@@ -8,6 +8,18 @@ class ResponseHandler {
   static internalServerError(res, message) {
     return res.status(500).json({ message: message });
   }
+
+  static unAuthorize(res, message) {
+    return res.status(401).json({ message: message });
+  }
+
+  static authenticationFailed(res, message) {
+    return res.status(400).json({ message: message });
+  }
+
+  static inCorrectCredential(res, message) {
+    return res.status(403).json({ message: message });
+  }
 }
 
 module.exports = ResponseHandler;

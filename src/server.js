@@ -21,7 +21,6 @@ DbConnection.connection();
 //   } catch (err) {
 //     console.log(err);
 //   }
-
 //   console.log("middleware");
 //   return next();
 // });

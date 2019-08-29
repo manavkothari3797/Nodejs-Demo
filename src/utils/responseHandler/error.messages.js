@@ -1,7 +1,12 @@
 const ERROR = {
   ALL_FIELD_REQUIRED: "All field required",
   VENDOR_NOT_FOUND: "Vendor not found",
-  INTERNAL_SERVER_ERROR: "Internal Server Error"
+  INTERNAL_SERVER_ERROR: "Internal Server Error",
+  PERMISSION_DENIED: "Permission denied",
+  TOKEN_INVALID: "Token invalid",
+  NO_TOKEN: "Token not provided",
+  AUTH_FAILED: "Authentication failed! Please check the request",
+  INCORRECT_CREDENTIALS: "Incorrect username or password"
 };
 
 module.exports = ERROR;

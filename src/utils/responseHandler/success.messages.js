@@ -1,5 +1,6 @@
 const SUCCESS = {
-  OK: "OK"
+  OK: "OK",
+  AUTH_SUCCESS: "Authentication successful!"
 };
 
 module.exports = SUCCESS;

@@ -19,7 +19,6 @@ class Auth {
           return ResponseHandler.unAuthorize(res, ERROR.TOKEN_INVALID);
         } else {
           req.decoded = decoded;
-          console.log(decoded);
           next();
         }
       });

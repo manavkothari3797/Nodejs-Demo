@@ -25,6 +25,32 @@ const config = convict({
     format: Number,
     default: 10,
     arg: "salt-round"
+  },
+  cors: {
+    origin: {
+      doc: "allowed origins",
+      format: Array,
+      default: ["http://localhost:3000/"],
+      arg: "origin"
+    },
+    methods: {
+      doc: "allowed methods",
+      format: Array,
+      default: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
+      arg: "methods"
+    },
+    allowedHeaders: {
+      doc: "allowed headers",
+      format: Array,
+      default: ["Content-Type", "Authorization"],
+      arg: "headers"
+    },
+    successPorts: {
+      doc: "allowed ports",
+      format: Number,
+      default: 200,
+      arg: "option success port"
+    }
   }
 });
 

@@ -6,6 +6,8 @@ const Auth = require("../../utils/utils/Auth");
 router.post("/login", Auth.login);
 router.get("/logout", Auth.logout);
 
+router.use(Auth.checkToken);
+
 router.post("/", adminController.createAdmin);
 
 // router.post("/", adminController.createAdmin);

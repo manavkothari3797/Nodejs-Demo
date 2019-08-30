@@ -39,5 +39,5 @@ exports.createVendor = async (req, res) => {
       ERROR.INTERNAL_SERVER_ERROR
     );
   }
-  return ResponseHandler.success(res, vendorDetails);
+  return ResponseHandler.success(res, { vendorDetails });
 };

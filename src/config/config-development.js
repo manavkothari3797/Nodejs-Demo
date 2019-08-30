@@ -12,13 +12,19 @@ const config = convict({
     format: String,
     default:
       "mongodb+srv://manav:123456%21%40%23@cluster0-lz91a.mongodb.net/Test?retryWrites=true&w=majority",
-    arg: "dburl"
+    arg: "db-url"
   },
   securityKey: {
     doc: "authentication key",
     format: String,
     default: "randomkey",
     arg: "security-key"
+  },
+  saltRound: {
+    doc: "salt round value",
+    format: Number,
+    default: 10,
+    arg: "salt-round"
   }
 });
 

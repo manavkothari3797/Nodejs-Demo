@@ -14,14 +14,14 @@ class Auth {
     if (token) {
       jwt.verify(token, config.get("securityKey"), (err, decoded) => {
         if (err) {
-          ResponseHandler.unAuthorize(res, ERROR.TOKEN_INVALID);
+          return ResponseHandler.unAuthorize(res, ERROR.TOKEN_INVALID);
         } else {
           req.decoded = decoded;
           next();
         }
       });
     } else {
-      ResponseHandler.internalServerError(res, ERROR.NO_TOKEN);
+      return ResponseHandler.internalServerError(res, ERROR.NO_TOKEN);
     }
   }
 
@@ -57,8 +57,7 @@ class Auth {
   }
 
   static logout(req, res, next) {
-    console.log(req);
-    return ResponseHandler.authenticationFailed(res, ERROR.AUTH_FAILED);
+    return ResponseHandler.success(res, { message: SUCCESS.LOGOUT });
   }
 }
 

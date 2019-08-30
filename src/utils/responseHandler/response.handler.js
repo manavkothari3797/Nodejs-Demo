@@ -20,6 +20,10 @@ class ResponseHandler {
   static inCorrectCredential(res, message) {
     return res.status(403).json({ message: message });
   }
+
+  static conflict(res, message) {
+    return res.status(409).json({ message: message });
+  }
 }
 
 module.exports = ResponseHandler;

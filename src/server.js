@@ -19,9 +19,8 @@ DbConnection.connection();
 //   try {
 //     await DbConnection.connection();
 //   } catch (err) {
-//     console.log(err);
+//     console.log(err);x
 //   }
-//   console.log("middleware");
 //   return next();
 // });
 

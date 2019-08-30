@@ -4,7 +4,7 @@ const ResponseHandler = require("../responseHandler/response.handler");
 const bcrypt = require("bcrypt");
 
 class Admin {
-  static async creteAdmin(admin) {
+  static async createAdmin(admin) {
     bcrypt.hash(admin.password, config.get("saltRound"), async (err, hash) => {
       if (err) {
         return ResponseHandler.internalServerError(

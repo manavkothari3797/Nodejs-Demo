@@ -16,7 +16,7 @@ exports.createAdmin = async (req, res) => {
   }
 
   try {
-    await Admin.creteAdmin(req.body);
+    await Admin.createAdmin(req.body);
   } catch (error) {
     return ResponseHandler.internalServerError(
       res,

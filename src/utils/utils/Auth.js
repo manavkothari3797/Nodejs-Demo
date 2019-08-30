@@ -1,8 +1,10 @@
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 const config = require("../../config");
 const ResponseHandler = require("../../utils/responseHandler/response.handler");
 const ERROR = require("../../utils/responseHandler/error.messages");
 const SUCCESS = require("../../utils/responseHandler/success.messages");
+const adminService = require("../../modules/admin/admin.service");
 
 class Auth {
   static checkToken(req, res, next) {
@@ -17,6 +19,7 @@ class Auth {
           return ResponseHandler.unAuthorize(res, ERROR.TOKEN_INVALID);
         } else {
           req.decoded = decoded;
+          console.log(decoded);
           next();
         }
       });
@@ -25,22 +28,23 @@ class Auth {
     }
   }
 
-  static login(req, res, next) {
-    const userName = req.body.userName;
+  static async login(req, res) {
+    const email = req.body.email;
     const password = req.body.password;
 
-    const mockUserName = "admin";
-    const mockPassWord = "password";
+    if (email && password) {
+      const admin = await adminService.getAdmin(email);
+      const isLogin = await bcrypt.compare(password, admin.password);
 
-    if (userName && password) {
-      if (userName === mockUserName && password === mockPassWord) {
+      if (isLogin) {
         const token = jwt.sign(
-          { username: userName },
+          { email: email, id: admin._id },
           config.get("securityKey"),
           {
             expiresIn: "24h" // expires in 24 hours
           }
         );
+
         return ResponseHandler.success(res, {
           message: SUCCESS.AUTH_SUCCESS,
           token: token
@@ -56,7 +60,7 @@ class Auth {
     }
   }
 
-  static logout(req, res, next) {
+  static logout(req, res) {
     return ResponseHandler.success(res, { message: SUCCESS.LOGOUT });
   }
 }

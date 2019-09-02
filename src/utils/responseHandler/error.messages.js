@@ -7,7 +7,8 @@ const ERROR = {
   NO_TOKEN: "Token not provided",
   AUTH_FAILED: "Authentication failed! Please check the request",
   INCORRECT_CREDENTIALS: "Incorrect username or password",
-  EMIL_ALREADY_REG: "Email already registered"
+  EMIL_ALREADY_REG: "Email already registered",
+  ID_REQUIRED: "Id required"
 };
 
 module.exports = ERROR;

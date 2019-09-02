@@ -1,28 +1,35 @@
 const SUCCESS = require("./success.messages");
+const STATUS = require("./status.code");
 
 class ResponseHandler {
   static success(res, responseObj) {
-    return res.status(200).json({ status: SUCCESS.OK, ...responseObj });
+    return res
+      .status(STATUS.SUCCESS)
+      .json({ status: SUCCESS.OK, ...responseObj });
   }
 
   static internalServerError(res, message) {
-    return res.status(500).json({ message: message });
+    return this.send(res, STATUS.INTERNAL_SERVER_ERROR, message);
   }
 
   static unAuthorize(res, message) {
-    return res.status(401).json({ message: message });
+    return this.send(res, STATUS.UNAUTHORIZED, message);
   }
 
   static authenticationFailed(res, message) {
-    return res.status(400).json({ message: message });
+    return this.send(res, STATUS.AUTH_FAILED, message);
   }
 
   static inCorrectCredential(res, message) {
-    return res.status(403).json({ message: message });
+    return this.send(res, STATUS.INCORRECT_CREDENTIALS, message);
   }
 
   static conflict(res, message) {
-    return res.status(409).json({ message: message });
+    return this.send(res, STATUS.CONFLICT, message);
+  }
+
+  static send(res, statusCode, message) {
+    return res.status(statusCode).json({ message: message });
   }
 }
 

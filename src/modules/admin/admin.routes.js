@@ -8,6 +8,7 @@ router.get("/logout", Auth.logout);
 
 router.use(Auth.checkToken);
 router.post("/", adminController.createAdmin);
+router.get("/:id", adminController.getAdminById);
 
 // router.post("/", adminController.createAdmin);
 

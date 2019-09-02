@@ -29,4 +29,24 @@ exports.createAdmin = async (req, res) => {
   });
 };
 
-exports.getAdmin = async (req, res) => {};
+exports.getAdminById = async (req, res) => {
+  if (!req.params.id) {
+    return ResponseHandler.internalServerError(res, ERROR.ID_REQUIRED);
+  }
+
+  const {
+    _id,
+    email,
+    created_at,
+    updated_at
+  } = await adminService.getAdminById(req.params.id);
+
+  const admin = {
+    _id,
+    email,
+    created_at,
+    updated_at
+  };
+
+  return ResponseHandler.success(res, { admin });
+};

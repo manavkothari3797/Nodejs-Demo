@@ -33,20 +33,21 @@ exports.getAdminById = async (req, res) => {
   if (!req.params.id) {
     return ResponseHandler.internalServerError(res, ERROR.ID_REQUIRED);
   }
+  let admin = {};
 
-  const {
-    _id,
-    email,
-    created_at,
-    updated_at
-  } = await adminService.getAdminById(req.params.id);
-
-  const admin = {
-    _id,
-    email,
-    created_at,
-    updated_at
-  };
+  try {
+    admin = {
+      _id,
+      email,
+      created_at,
+      updated_at
+    } = await adminService.getAdminById(req.params.id);
+  } catch (e) {
+    return ResponseHandler.internalServerError(
+      res,
+      ERROR.INTERNAL_SERVER_ERROR
+    );
+  }
 
   return ResponseHandler.success(res, { admin });
 };

@@ -11,7 +11,7 @@ const config = convict({
     doc: "monogdb database url",
     format: String,
     default:
-      "mongodb+srv://manav:123456%21%40%23@cluster0-lz91a.mongodb.net/Test?retryWrites=true&w=majority",
+      "replace value",
     arg: "db-url"
   },
   securityKey: {
